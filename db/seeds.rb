@@ -42,7 +42,7 @@ Tpd::Address::Prefecture.create(:name=>"北海道", :region_id => hokkaido_regio
 ["福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県"].each {|pref| Tpd::Address::Prefecture.create(:name=>pref, :region_id => kyusyu_region.id)}
 Tpd::Address::Prefecture.create(:name=>"沖縄県", :region_id => okinawa_region.id)
 
-require "./db/zipcode/import"
+#require "./db/zipcode/import"
 
 
 puts "group table : #{Tpd::Person::Group.table_name}"
@@ -66,7 +66,7 @@ if Tpd::Person.count < 1
   Tpd::AppConfig.create(:name=>"システム管理者ID", :code=>"system_user_id", :value_string=>system_user.id, :value_type=>"integer", :system_lock => 1)
   
   ## オーナー設定
-  owner = ShopOwner.new
+  owner = Tpd::Person.new
   owner.name = "Allexceed"
   owner.kana = "アレクシード"
   owner.zip_code = "3200051";
@@ -81,8 +81,11 @@ if Tpd::Person.count < 1
   else
    puts("ok")
   end
+
+  Tpd::Person::User.create(person_id: owner.id, password: "allexceed", password_confirmation: "allexceed")
+
   ## オーナーIDをappconfigに登録
-  Tpd::AppConfig.create(:name=>"オーナーID", :code=>"shop_owner_id", :value_string=>owner.person.id, :value_type=>"integer", :system_lock => 1)
+  Tpd::AppConfig.create(:name=>"オーナーID", :code=>"shop_owner_id", :value_string=>owner.id, :value_type=>"integer", :system_lock => 1)
 
 
   
