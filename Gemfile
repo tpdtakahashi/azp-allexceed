@@ -49,7 +49,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rb-readline'
 gem 'nokogiri'
-gem 'rmagick', '<= 2.15.4'
+#gem 'rmagick', '<= 2.15.4'
 
 gem 'kaminari'
 
