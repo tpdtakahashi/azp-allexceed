@@ -1,0 +1,85 @@
+  <table  class="table"><tbody>
+    <tr>
+      <th>住所</th>
+      <td>〒<%= record.zip_code %><br/><%= record.address %></td>
+    </tr>
+    <tr>
+      <th>学区</th>
+      <td>
+      小学校：<%= record.elementaly_school %><br>
+      中学校：<%= record.junior_high_school %><br>
+      </td>
+    </tr>
+    <tr>
+      <th>交通</th>
+      <td>
+      最寄駅：<%= record.station %><br/>
+      <%= record.traffic %>
+      </td>
+    </tr>
+    <tr>
+      <th>地目</th>
+      <td><%= record.chimoku %></td>
+    </tr>
+    <tr>
+      <th>区域区分</th>
+      <td><%= record.kuiki %></td>
+    </tr>
+    <tr>
+      <th>用途地域</th>
+      <td><%= record.youto %></td>
+    </tr>
+    <tr>
+      <th>建ぺい率</th>
+      <td><%= record.kenpei %></td>
+    </tr>
+    <tr>
+      <th>容積率</th>
+      <td><%= record.youseki %></td>
+    </tr>
+    <tr>
+      <th>道路</th>
+      <td><%= record.douro %></td>
+    </tr>
+    <tr>
+      <th>取引態様</th>
+      <td><%= record.torihikitaiyou %></td>
+    </tr>
+    <tr>
+      <th>物件説明</th>
+      <td><%= simple_format record.description %></td>
+    </tr>
+    <tr>
+      <th>物件ポイント</th>
+      <td>
+        <table><tbody>
+          <tr>
+            <th><%= record.syoukai_label_1 %></th>
+            <td><%= record.syoukai_memo_1 %></td>
+          </tr>
+          <tr>
+            <th><%= record.syoukai_label_2 %></th>
+            <td><%= record.syoukai_memo_2 %></td>
+          </tr>
+          <tr>
+            <th><%= record.syoukai_label_3 %></th>
+            <td><%= record.syoukai_memo_3 %></td>
+          </tr>
+          <tr>
+            <th><%= record.syoukai_label_4 %></th>
+            <td><%= record.syoukai_memo_4 %></td>
+          </tr>
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <th>PRポイント</th>
+      <td><%= simple_format record.pr_comment %></td>
+    </tr>
+    <tr>
+      <th>メモ（非公開）</th>
+      <td><%= simple_format record.description %></td>
+    </tr>
+  </tbody></table>
+
+

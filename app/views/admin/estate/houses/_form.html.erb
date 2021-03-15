@@ -1,0 +1,18 @@
+<%= form_for([:admin,@house], :html => {:multipart => true, :id => "record-form"}) do |f| %>
+
+<div class="container-fluid">
+	<div class="row">
+
+<div class="col-xs-6">
+<%= render partial: 'admin/estate/form_common', locals: {f: f} %>
+</div>
+
+<div class="col-xs-6">
+<%= render partial: 'form_params', locals: {f: f} %>
+</div>
+
+</div></div>
+
+<hr/>
+
+<% end %>

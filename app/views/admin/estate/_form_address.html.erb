@@ -1,0 +1,8 @@
+  <div class="field">
+    <%= f.label "住所" %><br />
+    〒<%= f.text_field :zip_code, :size=>8 %><br />
+    【都道府県】<%= f.text_field :address_pref, :size=>5 %>　
+    【市町村】<%= f.text_field :address_city, :size=>8 %><br />
+    【町域番地】<%= f.text_field :address_area, :size=>15 %>　
+    【建物名称等】<%= f.text_field :address_else, :size=>15 %>　
+  </div>

@@ -1,0 +1,35 @@
+<div class="panel panel-info">
+  <div class="panel-heading">戸建て一覧</div>
+  <div class="panel-body">
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarEexample4">
+      <ul class="nav navbar-nav  navbar-left">
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+<%= link_to "新規登録", new_admin_estate_house_path, class: "btn btn-info btn-lg" %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<table class="table">
+  <tr>
+    <th></th>
+    <th>住所</th>
+    <th>面積</th>
+    <th>価格</th>
+  </tr>
+
+<% @houses.each do |house| %>
+  <tr>
+    <td><%= edit_button_s admin_estate_house_path( house) %></td>
+    <td><%= house.address %></td>
+    <td><%= house.land_area_size %>㎡(<%= house.land_tsubo_size %>坪)</td>
+    <td><%= number_format(house.price) %>円</td>
+  </tr>
+<% end %>
+</table>
+
+</div></div>

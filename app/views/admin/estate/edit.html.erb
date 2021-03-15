@@ -1,0 +1,51 @@
+<div class="panel panel-info">
+  <div class="panel-heading"><%= edit_button_s nil, "data-toggle" => "tooltip", :title => "詳細" %> 商品編集</div>
+  <div class="panel-body">
+
+<table class="action">
+  <tr class="top">
+    <td class="center" colspan="3">
+      <%= notice_message %>
+    </td>
+  </tr>
+  <tr class="bottom">
+    <td class="left">
+      <div style="float:left;width:40px;"><%= return_button owner_products_path %></div>
+      <div style="clear:both;"></div>
+    </td>
+    <td class="center">
+    </td>
+    <td class="right">
+      <div style="float:right;width:100px;margin-right:10px;">
+<%= form_tag "#", method: :put, class: "create_form" do %>
+<%= submit_tag "保存", class: "btn btn-info btn-max", style: 'width:100px;height:80px;' %>
+<%- end %>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<script>
+var UploadFile = null;
+</script>
+
+
+<%= render 'form' %>
+<%= render :partial => "share/remote_submit", :locals => {
+      form_id: "#product-form",
+      dom_id: '.create_form',
+      :post_to => owner_product_path(@product),
+      :move_to => owner_products_path,
+#              :before_xhr1 => "tinyMCE.triggerSave();",
+      :before_xhr2 => "if(UploadFile != null)formData.append('product[default_image]', UploadFile);",
+      } %>
+
+<%= render :partial => "share/remote_submit",
+            :locals => {
+              :form_id => "#delete_form",
+              :post_to => owner_product_path(@product),
+              :move_to => owner_products_path,
+              :before_xhr1 => "if(!confirm('この商品を削除します。\\nよろしいですか？')){return false;}"
+            } %>
+            
+</div></div>

@@ -1,0 +1,6 @@
+<h1>商品ページプレビュー</h1>
+
+<%= render :partial => "admin/parts/action/show", :locals => {:return_to => admin_products_path,
+                                                              :edit_to => edit_admin_product_path(@product) } %>
+
+<%= render :partial => "/products/detail", :locals => {:product => @product} %>

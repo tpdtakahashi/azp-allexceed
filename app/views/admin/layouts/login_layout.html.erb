@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns=”http://www.w3.org/1999/xhtml”
+xmlns:svg=”http://www.w3.org/2000/svg”
+xmlns:xlink=”http://www.w3.org/1999/xlink”>
+<head>
+  <title><%= Tpd::AppConfig.value("title") %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+  <%= javascript_include_tag "admin/application" %>
+  <%= stylesheet_link_tag    "admin/application" %>
+  <%= csrf_meta_tags %>
+  
+
+</head>
+<body>
+
+<nav class="navbar bg-header navbar-inverse navbar-primary">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<%= link_to "NMS管理センター", admin_path, class: "navbar-brand" %>
+		</div>
+		
+		<div class="collapse navbar-collapse" id="navbarEexample">
+			<ul class="nav navbar-nav">
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 pull-md-9 bd-content">
+    </div>
+    
+    <div class="col-xs-12 col-md-12 push-md-3 bd-content ">
+<%= yield %>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+</body>
+</html>

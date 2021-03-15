@@ -1,0 +1,70 @@
+<%-
+  form_id = (form_id.nil? ? "form" : form_id)
+  dom_id = (dom_id.nil? ? form_id : dom_id)
+  success_callback ||= (move_to.blank? ? "location.reload()" : "$(location).attr('href', '#{move_to}')")
+  before_xhr1 ||= ""
+  before_xhr2 ||= ""
+  event ||= "submit"
+  method ||= "post"
+  nomultipart = (nomultipart.nil? ? false : nomultipart) 
+%>
+
+<script>
+
+$(function() {
+  var dom = $("<%= dom_id %>");
+  dom.on("<%= event %>", function() {
+    <%= raw before_xhr1 %>;
+    
+    var frm = $("<%= form_id %>");
+    var formData = new FormData(frm[0]);
+    
+    <%= raw before_xhr2 %>;
+    dispLoading("処理中...");
+    
+    $.ajax({
+        url:'<%= post_to %>',
+        method: '<%= method %>',
+<%- if !nomultipart %>
+<%- end %>
+        contentType: false,
+        processData: false,
+        data:formData,
+        dataType: 'json',
+        error: function(xhr,status, error) {
+          console.log('アップデートに失敗しました');
+          console.log(error);
+          alert('Error! ' + status + ' ' + error);
+          removeLoading();
+        },
+        success: function(response,datatype) {
+          console.log('アップロードに成功しました');
+          console.log(response);
+          
+          if(response.status == "ok"){
+            <%= raw success_callback %>;
+          } else {
+            //var errors = $.parseJSON(response.errors);
+            var err_mes = new Array();
+            for(var i = 0;i<response.errors.length;i++){
+              //var error = $.parseJSON(response.errors[i]).error;
+              var error = response.errors[i].error;
+              err_mes.push("・" + error); 
+            }
+            alert("Error!\n\n" + err_mes.join("\n"));
+            removeLoading();
+          }
+          
+        },
+        complete: function(){
+           //removeLoading();
+           //fade_hidden();
+        }
+    });    
+    
+    return false;
+  });
+});
+
+
+</script>

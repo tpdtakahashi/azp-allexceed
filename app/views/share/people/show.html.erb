@@ -1,0 +1,104 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id:</b>
+  <%= @person.id %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @person.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @person.last_name %>
+</p>
+
+<p>
+  <b>First name kana:</b>
+  <%= @person.first_name_kana %>
+</p>
+
+<p>
+  <b>Last name kana:</b>
+  <%= @person.last_name_kana %>
+</p>
+
+<p>
+  <b>Sex type:</b>
+  <%= @person.sex_type %>
+</p>
+
+<p>
+  <b>Birthday:</b>
+  <%= @person.birthday %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @person.email %>
+</p>
+
+<p>
+  <b>Mobile email:</b>
+  <%= @person.mobile_email %>
+</p>
+
+<p>
+  <b>Telephone:</b>
+  <%= @person.telephone %>
+</p>
+
+<p>
+  <b>Mobile phone:</b>
+  <%= @person.mobile_phone %>
+</p>
+
+<p>
+  <b>Zip code:</b>
+  <%= @person.zip_code %>
+</p>
+
+<p>
+  <b>Address pref:</b>
+  <%= @person.address_pref %>
+</p>
+
+<p>
+  <b>Address city:</b>
+  <%= @person.address_city %>
+</p>
+
+<p>
+  <b>Address area:</b>
+  <%= @person.address_area %>
+</p>
+
+<p>
+  <b>Address else:</b>
+  <%= @person.address_else %>
+</p>
+
+<p>
+  <b>Published flg:</b>
+  <%= @person.published_flg %>
+</p>
+
+
+<p>
+  <b>Created at:</b>
+  <%= @person.created_at %>
+</p>
+
+<p>
+  <b>Updated at:</b>
+  <%= @person.updated_at %>
+</p>
+
+<p>
+  <%= render :partial => "people/bank_accounts" %>
+</p>
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %>

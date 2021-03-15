@@ -1,0 +1,42 @@
+<h1>商品編集</h1>
+<table class="action">
+  <tr class="top">
+    <td class="center" colspan="3">
+      <%= notice_message %>
+    </td>
+  </tr>
+  <tr class="bottom">
+    <td class="left">
+      <div style="float:left;width:40px;"><%= return_button admin_products_path %></div>
+      <div style="clear:both;"></div>
+    </td>
+    <td class="center">
+    </td>
+    <td class="right">
+      <div style="float:right;width:150px;"><%= render partial: 'admin/products/delete' %></div>
+      <div style="clear:both;"></div>
+    </td>
+  </tr>
+</table>
+
+<script>
+var UploadFile = null;
+</script>
+
+
+<%= render 'form' %>
+<%= render :partial => "admin/remote_submit", :locals => {
+                                                :form_id => "#product-form",
+                                                :post_to => admin_product_path(@product),
+                                                :move_to => admin_products_path,
+#                                                :before_xhr1 => "tinyMCE.triggerSave();",
+                                                :before_xhr2 => "if(UploadFile != null)formData.append('product[default_image]', UploadFile);",
+                                              } %>
+
+<%= render :partial => "admin/remote_submit", :locals => {
+                                                :form_id => "#delete_form",
+                                                :post_to => admin_product_path(@product),
+                                                :move_to => admin_products_path,
+                                                :before_xhr1 => "if(!confirm('この商品を削除します。\\nよろしいですか？')){return false;}"
+                                              } %>
+                                              

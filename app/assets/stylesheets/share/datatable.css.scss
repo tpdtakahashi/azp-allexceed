@@ -1,0 +1,278 @@
+.data-table {
+  border-collapse:collapse;
+  
+  th,td {
+    border:gray 1px solid;
+    padding:5px;
+  }
+  
+  th {
+    font-weight:bold;
+    font-size:14px;
+    background-color:#ACF;
+  }
+  
+  td {
+    font-size:13px;
+  }
+  
+  td.numeric {
+    text-align:right;
+  }
+  
+  textarea {
+    font-size:11px;
+  }
+  
+  span.field-infomation {
+    color:#888;
+    margin:5px;
+    padding:3px;
+  }
+}
+
+
+.form-table {
+  border-collapse:collapse;
+  
+  hr {
+    border:1px dashed #CCC;
+  }
+  input {
+    font-size:12px;
+  }
+  textarea {
+    font-size:13px;
+  }
+  
+  th,td {
+    border:gray 1px solid;
+    padding:5px;
+  }
+  
+  th {
+    font-weight:bold;
+    font-size:14px;
+    background-color:#ACF;
+  }
+  
+  td {
+    font-size:12px;
+  }
+  
+  .subtable {
+    border:0px;
+    th,td {
+      border:0px;
+    }
+    th {
+      text-align:right;
+      font-weight:normal;
+    }
+  }
+  
+  span.field-infomation {
+    color:#F44;
+    margin:5px;
+    padding:3px;
+    background-color:#FF0;
+  }
+  
+  div.cell {
+    float:left;
+    width:170px;
+  }
+  div.cell-off{
+    float:none;
+    clear:both;
+  }
+}
+
+.show-table {
+  border-collapse:collapse;
+  
+  hr {
+    border:1px dashed #CCC;
+  }
+  input {
+    font-size:12px;
+  }
+  textarea {
+    font-size:13px;
+  }
+  
+  th,td {
+    border:gray 1px solid;
+    padding:5px;
+  }
+  
+  th {
+    font-weight:bold;
+    font-size:14px;
+    background-color:#ACF;
+  }
+  
+  td {
+    font-size:12px;
+  }
+  
+  .subtable {
+    border:0px;
+    th,td {
+      border:0px;
+    }
+    th {
+      text-align:right;
+      font-weight:normal;
+    }
+  }
+  
+  span.field-infomation {
+    color:#F44;
+    margin:5px;
+    padding:3px;
+    background-color:#FF0;
+  }
+  
+  div.cell {
+    float:left;
+    width:170px;
+  }
+  div.cell-off{
+    float:none;
+    clear:both;
+  }
+}
+
+
+.table-infomation {
+  text-align:right;
+  font-size:12px;
+  color:#666;
+}
+
+.attention-mark {
+  font-size:9px;
+  color:#F66;
+}
+
+.select-dialog {
+  
+  label {
+    font-size:12px;
+  }
+  input {
+    font-size:12px;
+  }
+  
+}
+
+a.icon-button {
+  width:34px;
+  text-align:center;
+  font-size:10px;
+  margin:auto;
+}
+
+
+.action {
+  border:0;
+  width:95%;
+  border-bottom:1px solid gray;
+  margin-bottom:5px;
+  background-color:#FFD;
+  margin:10px;
+  
+  td {
+    border:0;
+  }
+  
+  td.infomation {
+    font-size:10px;
+  }
+  
+  tr.top {
+    td {
+      padding-top:5px;
+    }
+  }
+  tr.bottom {
+    td {
+      padding-bottom:5px;
+    }
+  }
+  
+  .left {
+    text-align:left;
+    padding-left:5px;
+    
+    a.icon-button {
+      
+    }
+  }
+  .center {
+    text-align:center;
+  }
+  .right {
+    text-align:right;
+    padding-right:5px;
+  }
+  
+  div.notice-message {
+    text-align:center;
+    background-color:#DDF;
+    padding:10px;
+    margin: {
+      top:5px;
+      bottom:5px;
+      left:20px;
+      right:20px;
+    }
+    font-weight:bold;
+    border: {
+      top:1px solid #88F;
+      bottom:1px solid #88F;
+    }
+  }
+  
+}
+
+.detail-dialog {
+  
+  fieldset {
+    font-size:12px;
+    
+    legend {
+      font-weight:bold;
+    }
+  }
+  
+}
+
+span.default {
+  color:black;
+}
+span.origin {
+  color:red;
+  font-weight:bold;
+}
+span.warning-message {
+  color:red;
+  font-weight:bold;  
+}
+
+input.order-total-price,
+input.order-cod-fee,
+input.order-sum-price,
+input.order-transportation,
+input.order-price,
+input.order-cost {
+  width:70px;
+  text-align:right;
+}
+input.order-number {
+  width:40px;
+  text-align:right;
+}
+
+  

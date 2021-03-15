@@ -1,0 +1,40 @@
+
+.btn-menu {
+    width:120px;
+    font-weight:bold;
+    .btn-menu-title {
+      font-size:18px;
+      padding-top:3px;
+      padding-bottom:3px;
+    }
+    text-align:center;
+    margin-left:15px;
+    margin-right:5px;
+}
+
+.btn-quote {
+    img {
+        width:95%;
+        filter: brightness(0) invert(1);
+    }
+    background-color:#a4e;
+    color:white;
+}
+.btn-order {
+    img {
+        width:95%;
+        filter: brightness(0) invert(1);
+    }
+    background-color:#294;
+    color:white;
+}
+
+.btn-customer {
+    img {
+        width:95%;
+        filter: brightness(0) invert(1);
+    }
+    background-color:#22f;
+    color:white;
+}
+

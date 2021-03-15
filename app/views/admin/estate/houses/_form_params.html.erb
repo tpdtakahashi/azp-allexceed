@@ -1,0 +1,53 @@
+  <table  class="table"><tbody>
+    <tr>
+      <th><%= f.label :price, '価格' %></th>
+      <td>
+        <%= f.number_field :price %>円
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :land_area_size, '土地面積(㎡)' %></th>
+      <td>
+        <%= f.number_field :land_area_size, step: '0.01' %>㎡
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :house_area_size, '建物面積(㎡)' %></th>
+      <td>
+        <%= f.number_field :land_area_size, step: '0.01' %>㎡
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :madori, '間取り' %></th>
+      <td>
+        <%= f.text_field :madori %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :builded_on, '築年月' %></th>
+      <td>
+        西暦<%= f.select :builded_on_year, ::Estate::Common.select_items(:tikunen) %>年
+        <%= f.select :builded_on_month, ::Estate::Common.select_items(:tikutsuki) %>月
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :parking_number, '駐車場' %></th>
+      <td>
+        <%= f.select :parking_number, ::Estate::Common.select_items(:parking) %>台<br/>
+        自由欄：<%= f.text_field :parking_info %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :setsubi, '設備' %></th>
+      <td>
+        電気：<%= f.text_field :denki, size: 6 %>
+        ガス：<%= f.text_field :gas, size: 6 %>
+        水道：<%= f.text_field :suido, size: 6 %>
+        下水：<%= f.text_field :gesui, size: 6 %>
+        <br/>
+        その他：
+        <%= f.text_area :setsubi %>
+      </td>
+    </tr>
+
+  </tbody></table>

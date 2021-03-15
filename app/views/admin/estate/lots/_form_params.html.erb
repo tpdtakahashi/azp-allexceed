@@ -1,0 +1,20 @@
+  <table  class="table"><tbody>
+    <tr>
+      <th><%= f.label :price, '円' %></th>
+      <td id="price-field-area">
+        <%= f.number_field :price %>円
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :land_area_size, '土地面積(㎡)' %></th>
+      <td id="land-area-field-area">
+        <%= f.number_field :land_area_size, step: '0.01' %>㎡
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :lot_number, '区画数' %></th>
+      <td id="land-area-field-area">
+        <%= f.number_field :lot_number, min: 2, max: 99 %>㎡
+      </td>
+    </tr>
+  </tbody></table>

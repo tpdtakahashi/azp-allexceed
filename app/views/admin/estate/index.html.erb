@@ -1,0 +1,39 @@
+<div class="panel panel-info">
+  <div class="panel-heading">商品リスト</div>
+  <div class="panel-body">
+
+<style type="text/css">
+  .thumb {
+    height: 100px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+</style>  
+
+<table class="table">
+  <tr>
+    <th></th>
+    <th></th>
+    <th>商品名</th>
+    <th>商品コード</th>
+    <th>単位</th>
+    <th>単価</th>
+    <th>仕入値</th>
+    <th>仕入先</th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%= edit_button_s edit_owner_product_path( product) %></td>
+    <td><%= product.default_image.blank? ? "画像なし" : image_tag( product.default_image_url("thumb") )%></td>
+    <td><%= product.name %></td>
+    <td><%= product.code %></td>
+    <td><%= product.unit_label %></td>
+    <td><%= "#{product.price} (#{product.status_price_tax_label})" %></td>
+    <td><%= product.cost.blank? ? '―' : "#{product.cost}(#{product.status_cost_tax_label })" %></td>
+    <td><%= product.supplier.name %></td>
+  </tr>
+<% end %>
+</table>
+
+</div></div>

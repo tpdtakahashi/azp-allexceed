@@ -1,0 +1,14 @@
+  <table  class="table"><tbody>
+    <tr>
+      <th>価格</th>
+      <td><%= number_format(@record.price) %>円</td>
+    </tr>
+    <tr>
+      <th>土地面積</th> 
+      <td><%= @record.land_area_size %>㎡(<%= @record.land_tsubo_size %>坪)</td>
+    </tr>
+    <tr>
+      <th>区画数</th> 
+      <td><%= @record.lot_number %>区画</td>
+    </tr>
+  </tbody></table>

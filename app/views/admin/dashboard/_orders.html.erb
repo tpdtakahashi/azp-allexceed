@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+  <div class="panel-heading linkPanelHeader">
+    <a href="<%= owner_path %>">
+      <h3 class="panel-title"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> 受注<br><small>Orders</small></h3>
+    </a>
+  </div>
+  <div class="panel-body linkPanelBody">
+    <%= render partial: "owner/quotes/minitable", locals:{orders: Order.order("created_at desc").limit(5)} %>
+  </div>
+  <div class="panel-footer" style="text-align:right;">
+  </div>
+</div>

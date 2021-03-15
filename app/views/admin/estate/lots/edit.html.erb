@@ -1,0 +1,37 @@
+<h1>新規登録 - 土地</h1>
+
+<table class="action">
+  <tr class="top">
+    <td class="center" colspan="3">
+      <%= notice_message %>
+    </td>
+  </tr>
+  <tr class="bottom">
+    <td class="left">
+      <div style="float:left;width:40px;"><%= return_button admin_estate_lot_path(@record) %></div>
+      <div style="clear:both;"></div>
+    </td>
+    <td class="center">
+    </td>
+    <td class="right">
+      <div style="clear:both;"></div>
+    </td>
+  </tr>
+</table>
+
+<%= render :partial => 'form' %>
+    <div class="actions">
+        <%= link_to '保存', '', class: 'btn btn-primary', id: 'save-button' %>
+      </div>    
+
+
+<%= render  partial: "share/remote_submit",
+        locals: {
+            form_id: '#record-form',
+            dom_id: '#save-button',
+            event: 'click',
+            post_to: admin_estate_lot_path(@record),
+            move_to: admin_estate_lot_path(@record),
+        } %>
+
+

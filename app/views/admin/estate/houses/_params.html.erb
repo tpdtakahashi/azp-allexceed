@@ -1,0 +1,41 @@
+  <table  class="table"><tbody>
+    <tr>
+      <th>価格</th>
+      <td><%= number_format(@house.price) %>円</td>
+    </tr>
+    <tr>
+      <th>土地面積</th> 
+      <td><%= @house.land_area_size %>㎡(<%= @house.land_tsubo_size %>坪)</td>
+    </tr>
+    <tr>
+      <th>建物面積(㎡)</th>
+      <td><%= @house.house_area_size %>㎡(<%= @house.land_tsubo_size %>坪)</td>
+    </tr>
+    <tr>
+      <th>間取り</th>
+      <td><%= @house.madori %></td>
+    </tr>
+    <tr>
+      <th>築年月</th>
+      <td><%= (@house.builded_on.blank? ? Date.today : @house.builded_on).strftime("%Y年%m月") %>
+      </td>
+    </tr>
+    <tr>
+      <th>駐車場</th>
+      <td>
+        <%= @house.parking_number %>台<br/>
+        自由欄：<%= @house.parking_info %>
+      </td>
+    </tr>
+    <tr>
+      <th>設備</th>
+      <td>
+        【電気】<%= @house.denki %>
+        【ガス】<%= @house.gas %>
+        【水道】<%= @house.suido %>
+        【下水】<%= @house.gesui %>
+        <br/>
+        <%= @house.setsubi %>
+      </td>
+    </tr>    
+  </tbody></table>

@@ -1,0 +1,99 @@
+<h3>■イメージ画像</h3>
+
+<style type="text/css">
+  .thumb {
+    height: 100px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+</style>  
+
+
+<div class="container-fluid">
+	<div class="row">
+<% images.each do |picture| %>
+    <div class="col-xs-2 image-field" style="border:1px solid gray;margin:3px;padding:5px;">
+    <input type="hidden" class="record-id" value="<%= picture.id %>">
+      <%= link_to "＜", "#", class: "up-index" %>
+      <%= image_tag( picture.url("l"), width: '80%' ) %>
+      <%= link_to "＞", "#", class: "down-index" %>
+      <div style="padding:5px;"><%= render 'admin/estate/images/delete' %></div>
+    </div>
+<% end %>
+    <div class="col-xs-2 image-field" style="margin:50px 3px;padding:5px;">
+      <%= link_to "画像追加", new_admin_estate_common_image_path(common), class: 'btn btn-primary btn-lg' %>
+    </div>
+  </div>
+</div>
+
+<script>
+$(function(){
+  
+  $('tr').find("td").wrapInner('<div style="display: block;padding:3px;" />');
+  $('tr').find("td").css("padding","0px");
+  
+  $(".up-index").on("click",function(){
+    var row = $(this).closest(".image-field");
+    var d = row;
+    var record_id = row.find(".record-id").val();
+    $.ajax({
+      url: "/admin/estate/commons/<%= common.id %>/images/" + record_id + "/up",
+      type: "post",
+      dataType: "json",
+    }).done(function(res){
+      var prev_row = row.prev("div");
+      if( prev_row.length ){
+          d.animate({opacity:0.0},100,function(){
+          row.insertBefore( prev_row );
+          d.animate({opacity:1.0},100);
+        });
+      }
+    });
+    return false;
+  });
+  
+  $(".down-index").on("click",function(){
+    var row = $(this).closest(".image-field");
+    var d = row;
+    var record_id = row.find(".record-id").val();
+    $.ajax({
+      url: "/admin/estate/commons/<%= common.id %>/images/" + record_id + "/down",
+      type: "post",
+      dataType: "json",
+    }).done(function(res){
+      var next_row = row.next("div");
+      if( next_row.length ){
+        d.animate({opacity:0.0},100,function(){
+          row.insertAfter( next_row );
+          d.animate({opacity:1.0},100);
+        });
+      }
+    });
+    return false;
+  });
+
+  $(".delete-form").on("submit",function(){
+    var row = $(this).closest(".image-field");
+
+    if(!confirm("この画像を削除しますか？")) return false;
+    var d = row;
+    var record_id = row.find(".record-id").val();
+    var frm = $(this);
+    var formData = new FormData(frm[0]);
+    $.ajax({
+      url: "/admin/estate/commons/<%= common.id %>/images/" + record_id,
+      type: "post",
+      contentType: false,
+      processData: false,
+      data:formData,
+      dataType: "json",
+    }).done(function(res){
+      row.remove();
+    });
+    return false;
+  });
+
+
+});
+</script>
+

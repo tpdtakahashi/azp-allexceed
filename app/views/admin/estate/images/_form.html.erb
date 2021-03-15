@@ -1,0 +1,113 @@
+<%= form_tag '', multipart: true, id: "image-form", method: (@image.new_record? ? :post : :put) do %>
+
+<style type="text/css">
+#file-input {
+  padding:10px;
+}
+#file-input div.input {
+  text-align:center;
+}
+  .thumb {
+    height: 200px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+  #files {
+    border: 1px solid #000;
+  }
+</style>  
+  
+  <table  class="form-table"><tbody>
+
+    <tr>
+      <th>画像</th>
+      <td id="file-input">
+        <div class="input">
+        <%= image_tag @image.url, :id => "input-image", :class => "thumb" %>
+        </div>
+        <div class="image-view">
+          <div class="out">
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>コメント</th>
+      <td>
+        <%= hidden_field_tag 'image[comment]', 0 %>
+        <%= text_field_tag 'image[comment]', @image.comment %>
+      </td>
+    </tr>
+    <tr>
+      <th>公開</th>
+      <td>
+        <%= hidden_field_tag 'image[published]', 0 %>
+        <%= check_box_tag 'image[published]', 1, @image.published %>公開する
+      </td>
+    </tr>
+
+  </tbody></table>
+    <div class="actions">
+    <%= submit_tag '登録' %>
+  </div>
+
+<% end %>
+
+<script>
+var UploadFile = null;
+$(function() {
+  var inEle = $('#file-input div.input'),
+      outEle = $('#file-input div.out');
+  
+  
+  // ドラッグで画面遷移させない
+  inEle
+  .on('dragenter', function(e) {
+    e.preventDefault();
+  })
+  .on('dragover', function(e){
+    e.preventDefault();
+  })
+  .on('drop', function(e){
+    e.preventDefault();
+    var files = e.originalEvent.dataTransfer.files;
+    UploadFile = files[0];
+ 
+    // 画像表示
+    for (var i=0; i<files.length; i++) {
+      if (files[i].type.match('image.*')) {
+        var reader = new FileReader();
+        //エラー処理
+        reader.onerror = function(e) {
+          console.log('error', e.target.error.code);
+        }
+        //読み込み後の処理
+        reader.onload = function(e){
+            $("#input-image").attr("src", e.target.result);
+            //outEle.append('<img class="thumb" src="'+e.target.result+'" />');
+            //inEle.hide();
+            $('#file-input div.image-view').show();
+        };
+        reader.readAsDataURL(files[i]);
+      }
+    }
+ 
+
+  });
+  
+  $("#delete-default-image")
+  .on('click', function(e){
+    UploadFile = null;
+    $("#product_default_image_delete_flg").val("1");
+    //$('#file-input div.input').show();
+    //$('#file-input div.out').html("");
+    //$('#file-input div.image-view').hide();
+    $("#input-image").attr("src", "<%= path_to_image @image.class.blank_image_url %>");
+    return false;
+  });
+  
+
+});
+
+
+</script>

@@ -1,0 +1,44 @@
+<h1>新規登録 - 戸建て</h1>
+
+<table class="action">
+  <tr class="top">
+    <td class="center" colspan="3">
+      <%= notice_message %>
+    </td>
+  </tr>
+  <tr class="bottom">
+    <td class="left">
+      <div style="float:left;width:40px;"><%= return_button admin_estate_houses_path %></div>
+      <div style="clear:both;"></div>
+    </td>
+    <td class="center">
+    </td>
+    <td class="right">
+<%= link_to "編集", edit_admin_estate_house_path(@house), class: "btn btn-info btn-lg" %>
+      <div style="clear:both;"></div>
+    </td>
+  </tr>
+</table>
+
+<div class="container-fluid">
+	<div class="row">
+    <div class="col-xs-6">
+      <%= render partial: 'admin/estate/common', locals: {record: @house} %>
+    </div>
+    <div class="col-xs-6">
+      <%= render partial: 'params' %>
+    </div>
+  </div>
+	<div class="row">
+    <div class="col-xs-12">
+      <%= render partial: 'admin/estate/images/list', locals: {common: @house.common, images: @house.common.images} %>
+    </div>
+  </div>
+	<div class="row">
+    <div class="col-xs-12">
+      <%= render partial: 'admin/estate/facilities/list', locals: {common: @house.common, facilities: @house.common.facilities} %>
+    </div>
+  </div>
+
+</div>
+

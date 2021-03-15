@@ -1,0 +1,23 @@
+<h2>銀行口座</h2>
+<div>
+  <%= link_to "口座作成", new_bank_account_path(:person_id => @person.id) %> | 
+  <%= link_to "銀行一覧", banks_path %>
+</div>
+<table>
+  <tr>
+    <th>銀行</th>
+    <th>支店</th>
+    <th>支店コード</th>
+    <th>種別</th>
+    <th>口座番号</th>
+  </tr>
+<%- @person.bank_accounts.each do |bank_account| %>
+  <tr>
+    <td><%= bank_account.bank.name %></td>
+    <td><%= bank_account.branch_name %></td>
+    <td><%= bank_account.branch_code %></td>
+    <td><%= bank_account.account_type %></td>
+    <td><%= bank_account.code %></td>
+  </tr>
+<%- end %>
+</table>

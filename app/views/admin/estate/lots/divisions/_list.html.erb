@@ -1,0 +1,99 @@
+<h3>■区画</h3>
+
+<table class="table">
+  <tr>
+    <th></th>
+    <th></th>
+    <th>号地名</th>
+    <th>面積</th>
+    <th>価格</th>
+    <th></th>
+  </tr>
+
+<% divisions.each do |division| %>
+  <tr class="division-row">
+    <input type="hidden" class="record-id" value="<%= division.id %>">
+    <td><%= link_to "▲", "#", class: "division-up-index" %></td>
+    <td><%= link_to "▼", "#", class: "division-down-index" %></td>
+    <td><%= division.name %></td>
+    <td><%= division.land_area_size %>㎡(<%= division.land_tsubo_size %>坪)</td>
+    <td><%= number_format division.price %>円</td>
+    <td><%= render 'admin/estate/lots/divisions/delete' %></td>
+  </tr>
+<% end %>
+</table>
+<div>
+  <%= link_to "区画追加", new_admin_estate_lot_division_path(lot), class: 'btn btn-primary btn-lg' %>
+</div>
+
+<script>
+$(function(){
+  
+  $('tr').find("td").wrapInner('<div style="display: block;padding:3px;" />');
+  $('tr').find("td").css("padding","0px");
+  
+  $(".division-up-index").on("click",function(){
+    var row = $(this).closest(".division-row");
+    var d = row.find("td");
+    var record_id = row.find(".record-id").val();
+    $.ajax({
+      url: "/admin/estate/lots/<%= lot.id %>/divisions/" + record_id + "/up",
+      type: "post",
+      dataType: "json",
+    }).done(function(res){
+      var prev_row = row.prev("div");
+      if( prev_row.length ){
+          d.animate({opacity:0.0},100,function(){
+          row.insertBefore( prev_row );
+          d.animate({opacity:1.0},100);
+        });
+      }
+    });
+    return false;
+  });
+  
+  $(".division-down-index").on("click",function(){
+    var row = $(this).closest(".division-row");
+    var d = row.find("td");
+    var record_id = row.find(".record-id").val();
+    $.ajax({
+      url: "/admin/estate/lots/<%= lot.id %>/divisions/" + record_id + "/down",
+      type: "post",
+      dataType: "json",
+    }).done(function(res){
+      var next_row = row.next("div");
+      if( next_row.length ){
+        d.animate({opacity:0.0},100,function(){
+          row.insertAfter( next_row );
+          d.animate({opacity:1.0},100);
+        });
+      }
+    });
+    return false;
+  });
+
+  $(".division-delete-form").on("submit",function(){
+    var row = $(this).closest(".division-row");
+
+    if(!confirm("この区画を削除しますか？")) return false;
+    var d = row.find("td");
+    var record_id = row.find(".record-id").val();
+    var frm = $(this);
+    var formData = new FormData(frm[0]);
+    $.ajax({
+      url: "/admin/estate/lots/<%= lot.id %>/divisions/" + record_id,
+      type: "post",
+      contentType: false,
+      processData: false,
+      data:formData,
+      dataType: "json",
+    }).done(function(res){
+      row.remove();
+    });
+    return false;
+  });
+
+
+});
+</script>
+

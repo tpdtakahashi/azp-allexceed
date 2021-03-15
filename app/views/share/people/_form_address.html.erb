@@ -1,0 +1,14 @@
+<%-
+  address_field_id ||= "address-field"
+  to_address_button_id ||= "zip_to_address"
+%>
+
+<div class="field address_field" id="<%= address_field_id %>">
+  〒<%= f.text_field :zip_code, :size=>8, :class => "address-zipcode-field", "data-role" => "none" %>
+  <%= button_tag "郵便番号 → 住所",  :type=>"button", :class=> "zip-to-address-button", "data-role" => "none" %>
+  <br />
+  【都道府県】<%= f.text_field :address_pref, :size=>5, :class => "address-pref-field", "data-role" => "none" %><br />
+  【市町村】<%= f.text_field :address_city, :size=>16, :class => "address-city-field", "data-role" => "none" %><br />
+  【町域番地】<%= f.text_field :address_area, :size=>15, :class => "address-area-field", "data-role" => "none" %><br />
+  【建物名称等】<%= f.text_field :address_else, :size=>15, :class => "address-else-field", "data-role" => "none" %><br />
+</div>

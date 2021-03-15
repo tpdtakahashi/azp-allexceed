@@ -1,0 +1,50 @@
+.white-img {
+    filter: brightness(0) invert(1);
+}
+
+.menu-cat {
+    img {
+        width:95%;
+        @extend .white-img;
+    }
+    color:white;
+}
+.quote {
+    @extend .menu-cat;
+    background-color:#a4e;
+}
+.order {
+    @extend .menu-cat;
+    background-color:#294;
+}
+.purchase {
+    @extend .menu-cat;
+    background-color:#c84;
+}
+.customer {
+    @extend .menu-cat;
+    background-color:#249;
+}
+
+.barcode {
+    @extend .menu-cat;
+    background-color:#166;
+}
+
+
+
+.btn-menu {
+    width:120px;
+    font-weight:bold;
+    .btn-menu-title {
+      font-size:18px;
+      padding-top:3px;
+      padding-bottom:3px;
+    }
+    text-align:center;
+    margin-left:15px;
+    margin-right:5px;
+}
+
+
+

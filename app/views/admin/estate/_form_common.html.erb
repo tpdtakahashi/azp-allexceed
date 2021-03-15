@@ -1,0 +1,154 @@
+  <table  class="table"><tbody>
+    <tr>
+      <th><%= f.label '物件タイトル' %></th>
+      <td>
+        <%= f.text_field :name %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :address %></th>
+      <td id="name-field-area">
+    〒<%= f.text_field :zip_code, size:8, id: 'zip-code-field' %><%= button_tag "郵便番号 → 住所", :id => "zip_to_address" %><br />
+    【都道府県】<%= f.text_field :address_pref, size:5, id: 'address-pref-field' %><br />　
+    【市町村】<%= f.text_field :address_city, size:8, id: 'address-city-field' %><br />
+    【町域番地】<%= f.text_field :address_area, size:15, id: 'address-area-field' %><br />
+    【建物名称等】<%= f.text_field :address_else, size:15, id: 'address-else-field' %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label '学区' %></th>
+      <td>
+        小学校：<%= f.text_field :elementaly_school %><br/>
+        中学校：<%= f.text_field :junior_high_school %><br/>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label  '交通' %></th>
+      <td>
+        最寄駅：<%= f.text_field :station, size: 10 %><br/>
+        <%= f.text_field :traffic %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label '地目' %></th>
+      <td>
+        <%= f.text_field :chimoku %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label  '区域区分' %></th>
+      <td>
+        <%= f.text_field :kuiki %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label '用途地域' %></th>
+      <td>
+        <%= f.text_field :youto %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label '建ぺい率' %></th>
+      <td>
+        <%= f.text_field :kenpei %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label '容積率' %></th>
+      <td>
+        <%= f.text_field :youseki %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label '道路' %></th>
+      <td>
+        <%= f.text_field :douro %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :torihikitaiyou, '取引態様' %></th>
+      <td>
+        <%= f.select :torihikitaiyou, ::Estate::Common.select_items(:torihikitaiyou) %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :description, '物件説明' %></th>
+      <td>
+        <%= f.text_area :description %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :syoukai_1, '物件ポイント1' %></th>
+      <td>
+        項目名：<%= f.text_field :syoukai_label_1, size: 10 %>
+        内容：<%= f.text_field :syoukai_memo_1, size: 30 %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :syoukai_1, '物件ポイント2' %></th>
+      <td>
+        項目名：<%= f.text_field :syoukai_label_2, size: 10 %>
+        内容：<%= f.text_field :syoukai_memo_2, size: 30 %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :syoukai_1, '物件ポイント3' %></th>
+      <td>
+        項目名：<%= f.text_field :syoukai_label_3, size: 10 %>
+        内容：<%= f.text_field :syoukai_memo_3, size: 30 %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :syoukai_1, '物件ポイント4' %></th>
+      <td>
+        項目名：<%= f.text_field :syoukai_label_4, size: 10 %>
+        内容：<%= f.text_field :syoukai_memo_4, size: 30 %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :pr_comment, 'PRポイント' %></th>
+      <td>
+        <%= f.text_area :pr_comment %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :memo, 'メモ（非公開）' %></th>
+      <td>
+        <%= f.text_area :memo %>
+      </td>
+    </tr>
+
+  </tbody></table>
+
+
+  <script>
+$(function() {
+  $("#zip_to_address").click(function() {
+    
+    var zipcode = $("#zip-code-field").val();
+    
+    $.ajax('/zipcode/' + zipcode, {
+        method: 'GET',
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        error: function(xhr,status, error) {
+          console.log('アップデートに失敗しました');
+          console.log(error);
+          alert('Error! ' + status + ' ' + error);
+        },
+        success: function(response) {
+          console.log('アップロードに成功しました');
+          console.log(response);
+          var address = response[0];
+          $("#address-pref-field").val(address.prefecture_name);
+          $("#address-city-field").val(address.city_name);
+          $("#address-area-field").val(address.area_name);
+        }
+    });
+
+    return false;
+  });
+});
+</script>
+

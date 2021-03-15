@@ -1,0 +1,22 @@
+<div style="text-align:center;">
+
+　　<div style="text-align:center;margin:auto;width:420px;padding:20px;">
+    <%= form_tag "" do %>
+　　  <div style="margin:5px;">
+    　　<label for="code">メールアドレス</label>
+    　　<%= text_field_tag 'email' %>
+    　　<label for="code">パスワード</label>
+    　　<%= password_field_tag 'code' %>
+  　　</div>
+
+　　  <div>
+   　　 <%= submit_tag 'ログイン' %>
+  　　</div>
+
+    <%- end %>
+　　</div>
+
+</div>
+
+<%= render :partial => "share/remote_submit", :locals => {:post_to => admin_login_path,
+                                              :move_to => nil } %>

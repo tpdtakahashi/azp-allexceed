@@ -1,0 +1,21 @@
+<nav class="navbar bg-header navbar-inverse navbar-primary">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<%= link_to "Allexceed物件管理センター", admin_path, class: "navbar-brand" %>
+		</div>
+		
+		<div class="collapse navbar-collapse" id="navbarEexample">
+			<ul class="nav navbar-nav">
+				<li><%= link_to "分譲地", admin_estate_lots_path, class: "navbar-brand" %></li>
+				<li><%= link_to "土地", admin_estate_lands_path, class: "navbar-brand" %></li>
+				<li><%= link_to "戸建", admin_estate_houses_path, class: "navbar-brand" %></li>
+			</ul>
+		</div>
+	</div>
+</nav>

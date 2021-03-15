@@ -1,0 +1,31 @@
+<h1>商品追加</h1>
+
+<table class="action">
+  <tr class="top">
+    <td class="center" colspan="3">
+      <%= notice_message %>
+    </td>
+  </tr>
+  <tr class="bottom">
+    <td class="left">
+      <div style="float:left;width:40px;"><%= return_button admin_estate_common_images_path(@estate) %></div>
+      <div style="clear:both;"></div>
+    </td>
+    <td class="center">
+    </td>
+    <td class="right">
+      <div style="clear:both;"></div>
+    </td>
+  </tr>
+</table>
+
+<%= render partial: 'form' %>
+
+<%= render partial: "share/remote_submit",
+              locals: {
+                  post_to: admin_estate_common_images_path(@estate),
+                  move_to: admin_estate_record_path(@estate),
+                  before_xhr2: "if(UploadFile != null)formData.append('image[upfile]', UploadFile);",
+                } %>
+
+

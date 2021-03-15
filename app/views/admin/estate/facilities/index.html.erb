@@ -1,0 +1,122 @@
+<h1>周辺施設一覧</h1>
+
+<table class="action">
+  <tr class="top">
+    <td class="center" colspan="3">
+      <%= notice_message %>
+    </td>
+  </tr>
+  <tr class="bottom">
+    <td class="left">
+    </td>
+    <td class="center">
+    </td>
+    <td class="right">
+      <div style="clear:both;"></div>
+    </td>
+  </tr>
+</table>
+
+<style type="text/css">
+  .thumb {
+    height: 100px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+</style>  
+
+<table class="table">
+  <tr>
+    <th></th>
+    <th></th>
+    <th>施設名</th>
+    <th>物件からの距離</th>
+    <th></th>
+  </tr>
+
+<% @facilities.each do |facilty| %>
+  <tr class="facilty-row">
+    <input type="hidden" class="record-id" value="<%= picture.id %>">
+    <td><%= link_to "▲", "#", class: "up-index" %></td>
+    <td><%= link_to "▼", "#", class: "down-index" %></td>
+    <td><%= facilty.name %></td>
+    <td><%= number_format facilty.distance %>ｍ</td>
+    <td><%= render 'delete' %></td>
+  </tr>
+<% end %>
+</table>
+<div>
+  <%= link_to "追加", new_admin_estate_common_facility_path(@estate), class: 'btn btn-primary btn-lg' %>
+</div>
+
+<script>
+$(function(){
+  
+  $('tr').find("td").wrapInner('<div style="display: block;padding:3px;" />');
+  $('tr').find("td").css("padding","0px");
+  
+  $(".up-index").on("click",function(){
+    var row = $(this).closest(".facilty-row");
+    var d = row.find("td");
+    var record_id = row.find(".record-id").val();
+    $.ajax({
+      url: "/admin/estate/commons/<%= @estate.id %>/facilties/" + record_id + "/up",
+      type: "post",
+      dataType: "json",
+    }).done(function(res){
+      var prev_row = row.prev("div");
+      if( prev_row.length ){
+          d.animate({opacity:0.0},100,function(){
+          row.insertBefore( prev_row );
+          d.animate({opacity:1.0},100);
+        });
+      }
+    });
+    return false;
+  });
+  
+  $(".down-index").on("click",function(){
+    var row = $(this).closest(".facilty-row");
+    var d = row.find("td");
+    var record_id = row.find(".record-id").val();
+    $.ajax({
+      url: "/admin/estate/commons/<%= @estate.id %>/facilties/" + record_id + "/down",
+      type: "post",
+      dataType: "json",
+    }).done(function(res){
+      var next_row = row.next("div");
+      if( next_row.length ){
+        d.animate({opacity:0.0},100,function(){
+          row.insertAfter( next_row );
+          d.animate({opacity:1.0},100);
+        });
+      }
+    });
+    return false;
+  });
+
+  $(".delete-form").on("submit",function(){
+    var row = $(this).closest(".facilty-row");
+
+    if(!confirm("この画像を削除しますか？")) return false;
+    var d = row.find("td");
+    var record_id = row.find(".record-id").val();
+    var frm = $(this);
+    var formData = new FormData(frm[0]);
+    $.ajax({
+      url: "/admin/estate/commons/<%= @estate.id %>/facilties/" + record_id,
+      type: "post",
+      contentType: false,
+      processData: false,
+      data:formData,
+      dataType: "json",
+    }).done(function(res){
+      row.remove();
+    });
+    return false;
+  });
+
+
+});
+</script>
+

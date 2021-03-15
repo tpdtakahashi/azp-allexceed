@@ -1,0 +1,310 @@
+// Place all the styles related to the common controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.controlgroup-textinput{
+ padding-top:.22em;
+ padding-bottom:.22em;
+}
+
+.clear-item {
+  clear:both;
+}
+
+
+#logo-area{
+  padding:5px;
+  font-weight:bold;
+  font-size:20px;
+}
+#global-navi{
+  margin:0;
+  padding:4px;
+  background-color:#CCC;
+
+  ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  li.menu, li.logout {
+    float:left;
+    margin:0;
+    padding:0px;
+    width:100px;
+    text-align:center;
+    
+    a {
+      margin:0;
+      padding:10px 5px 10px 5px;
+      text-decoration:none;
+      text-align:center;
+      font-weight:bold;
+      font-size:14px;
+      display:block;
+      
+      &:hover, &:link, &:visited {
+        color:black;
+      }
+      &:hover {
+        background-color:#FC9;
+      }
+    }
+  }
+  li.current {
+    background-color:#9DF;
+  }
+  li.logout {
+    text-align:right;
+    float:right;
+  }
+  
+  .clear-item {
+    float:none;
+    clear:both;
+  }
+}
+
+.tpd-sheet
+{
+   margin:0 auto;
+   position:relative;
+   cursor:auto;
+   width: 100%;
+   min-width: 700px;
+   max-width: 1920px;
+   z-index: auto !important;
+}
+
+.tpd-layout-wrapper
+{
+   position: relative;
+   margin: 0 auto 0 auto;
+   z-index: auto !important;
+}
+
+.tpd-content-layout
+{
+   display: table;
+   width: 100%;
+   table-layout: fixed;
+   border-collapse: collapse;
+}
+
+.tpd-content-layout-row 
+{
+   display: table-row;
+}
+
+.tpd-layout-cell
+{
+   display: table-cell;
+   vertical-align: top;
+}
+
+$leftwidth: 180px;
+$rightwidth: 200px;
+
+#middle {
+  background-color:#DFC;
+  display: table;
+   width: 100%;
+   table-layout: fixed;
+   border-collapse: collapse;  
+}
+
+.row-container {
+  display: table-row;
+}
+
+#left {
+   margin:0 auto;
+  padding:0;
+/*  float:left;*/
+  width:$leftwidth - 10px;
+  display: table-cell;
+  
+  #action-navi{
+    margin:0;
+    padding:4px;
+    
+    h3 {
+      text-align:center;
+      background-color:#FD4;
+      
+      margin: {
+        top:0;
+        left:0;
+        bottom:10px;
+        right:0;
+      }
+      padding: {
+        top:5px;
+        bottom:5px;
+      }
+      border: {
+        top:1px dashed gray;
+        bottom:1px dashed gray;
+      }
+    }
+
+
+    ul {
+      list-style:none;
+      margin:0;
+      padding:0;
+      background-color:white;
+    }
+    li.menu {
+      margin:0;
+      padding:0px;
+      text-align:left;
+      border:1px gray dotted;
+	  background-color:#CCF;
+    
+      a {
+        margin:0;
+        padding:10px 5px 10px 5px;
+        text-decoration:none;
+        text-align:left;
+        font-weight:bold;
+        font-size:14px;
+        display:block;
+        
+      
+        &:hover, &:link, &:visited {
+          color:black;
+        }
+        &:hover {
+          background-color:#AAF;
+        }
+      }
+    }
+    li.current {
+      background-color:#FC9;
+    }
+    li.sub-menu {
+      margin:0px;
+      padding:0px;
+      text-align:left;
+      border:0px gray dotted;
+    
+      a {
+        margin:0 10px 0 0;
+        padding:5px 10px 5px 5px;
+        text-decoration:none;
+        text-align:left;
+        font-weight:normal;
+        font-size:12px;
+        display:block;
+      
+        &:hover, &:link, &:visited {
+          color:black;
+        }
+        &:hover {
+          background-color:#FF9;
+        }
+      }
+    }
+    li.sub-current {
+      background-color:#CFF;
+    }
+  
+    .clear-item {
+      float:none;
+      clear:both;
+    }
+  }
+}
+
+
+#main {
+  display: table-cell;
+  background-color:white;
+  padding:10px;
+   margin:0 auto;
+/*  
+  margin: {
+    left:$leftwidth;
+    right:$rightwidth;
+  }
+*/  
+  h1 {
+    margin-top:0;
+    padding:8px;
+	background-color:#FCA;
+    border: {
+      left:10px solid orange;
+      bottom:2px solid orange;
+    }
+  }
+  h2 {
+    padding:8px;
+	background-color:#DDF;
+    border: {
+      left:8px solid blue;
+      bottom:2px solid blue;
+    }
+  }
+  h3 {
+    padding:5px;
+    border: {
+      left:5px solid #AFA;
+      bottom:1px solid #AFA;
+    }
+  }
+    
+  h4 {
+    padding:10px;
+    background-color:#CFC;
+    border: {
+      left:18px double green;
+    }
+  }
+}
+
+#right {
+  display: table-cell;
+   margin:0 auto;
+  padding:0;
+/*  float:right;*/
+  width:$rightwidth - 10px;
+}
+
+
+#footer {
+  padding:20px;
+  text-align:center;
+  
+  border: {
+    top:1px dashed gray;
+  }
+}
+
+span.worning {
+  color:c00;
+  font-weight:normal;
+}
+
+#progress {
+  text-align:center;
+  display:none;
+}
+
+#progress img{
+  margin:auto;
+}
+
+#progress p{
+  margin:0;
+  padding:10px;
+  text-align:center;
+}
+
+
+.btn-max {
+  width:200px;
+  height:60px;
+}
+
