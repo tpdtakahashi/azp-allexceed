@@ -12,7 +12,11 @@ class CreateTpdUploadFiles < ActiveRecord::Migration
       t.integer :index_order
 	    t.string :summary
       t.text :comment
+      t.text :sub_params
       t.integer :index_order, default: 100
+
+      t.datetime :published_at
+      
       t.timestamps
     end
   end

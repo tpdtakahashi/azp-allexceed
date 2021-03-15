@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210303082138) do
+ActiveRecord::Schema.define(version: 20210314134809) do
 
   create_table "agents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "person_id"
@@ -20,24 +20,72 @@ ActiveRecord::Schema.define(version: 20210303082138) do
     t.index ["person_id"], name: "index_agents_on_person_id", using: :btree
   end
 
-  create_table "estates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "estate_commons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "agent_id"
     t.string   "name"
     t.string   "summary"
-    t.text     "option_params", limit: 65535
-    t.text     "description",   limit: 65535
-    t.string   "zip_code",      limit: 32
-    t.string   "address_pref",  limit: 32
-    t.string   "address_city",  limit: 32
-    t.string   "address_area",  limit: 32
-    t.string   "address_else",  limit: 64
+    t.string   "category"
+    t.text     "sub_params",   limit: 65535
+    t.text     "description",  limit: 65535
+    t.text     "pr_comment",   limit: 65535
+    t.string   "zip_code",     limit: 32
+    t.string   "address_pref", limit: 32
+    t.string   "address_city", limit: 32
+    t.string   "address_area", limit: 32
+    t.string   "address_else", limit: 64
     t.string   "latitude"
     t.string   "longitude"
-    t.datetime "published_flg"
+    t.datetime "published_at"
     t.datetime "deleted_at"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["agent_id"], name: "index_estates_on_agent_id", using: :btree
+  end
+
+  create_table "estate_facilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "record_id"
+    t.integer  "distance"
+    t.string   "name"
+    t.string   "summary"
+    t.string   "category"
+    t.integer  "index_order"
+    t.string   "zip_code",     limit: 32
+    t.string   "address_pref", limit: 32
+    t.string   "address_city", limit: 32
+    t.string   "address_area", limit: 32
+    t.string   "address_else", limit: 64
+    t.string   "latitude"
+    t.string   "longitude"
+    t.text     "sub_params",   limit: 65535
+    t.text     "description",  limit: 65535
+    t.datetime "published_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["record_id"], name: "index_estate_facilities_on_record_id", using: :btree
+  end
+
+  create_table "estate_houses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "common_id"
+    t.integer  "price"
+    t.string   "madori"
+    t.float    "house_area_size", limit: 24
+    t.float    "land_area_size",  limit: 24
+    t.integer  "parking_number"
+    t.date     "builded_on"
+    t.text     "setsubi",         limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["common_id"], name: "index_estate_houses_on_common_id", using: :btree
+  end
+
+  create_table "estate_lands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "common_id"
+    t.integer  "price"
+    t.float    "land_area_size", limit: 53
+    t.text     "option_params",  limit: 65535
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["common_id"], name: "index_estate_lands_on_estate_id", using: :btree
   end
 
   create_table "tpd_address_prefectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -156,8 +204,11 @@ ActiveRecord::Schema.define(version: 20210303082138) do
     t.integer  "index_order",                  default: 100
     t.string   "summary"
     t.text     "comment",        limit: 65535
+    t.text     "sub_params",     limit: 65535
+    t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_foreign_key "estate_lands", "estate_commons", column: "common_id"
 end
