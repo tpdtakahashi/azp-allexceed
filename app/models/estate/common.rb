@@ -3,6 +3,7 @@ class ::Estate::Common < ApplicationRecord
 
     @@torihikitaiyou_items = %i(売主 貸主 媒介 代理)
 
+    has_many :view_blocks, ->{order(index_order: :asc)}, class_name: 'ViewBlock', foreign_key: 'estate_id'
     has_many :images, ->{order(index_order: :asc)}, class_name: '::Estate::Picture', foreign_key: 'record_id'
     has_many :facilities, ->{order(index_order: :asc)}, class_name: '::Estate::Facility', foreign_key: 'record_id'
 
