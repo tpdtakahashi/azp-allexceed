@@ -20,13 +20,19 @@ Rails.application.routes.draw do
       resources :lots do
         resources :divisions, controller: 'lots/divisions' do
           member do
-            post "up"   => "images/index_order#up"
-            post "down" => "images/index_order#down"
+            post "up"   => "lots/divisions/index_order#up"
+            post "down" => "lots/divisions/index_order#down"
           end          
         end
       end
 
       resources :commons do
+        resources :blocks do
+          member do
+            post "up"   => "images/index_order#up"
+            post "down" => "images/index_order#down"
+          end          
+        end
         resources :images do
           member do
             post "up"   => "images/index_order#up"
