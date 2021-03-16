@@ -12,6 +12,5 @@
  *
  *= require_tree ../share
  *= require_self
- *= require jquery-ui/datepicker
  *= require_tree .
  */
