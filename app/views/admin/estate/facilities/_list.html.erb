@@ -39,7 +39,7 @@ $(function(){
       type: "post",
       dataType: "json",
     }).done(function(res){
-      var prev_row = row.prev("div");
+      var prev_row = row.prev("tr");
       if( prev_row.length ){
           d.animate({opacity:0.0},100,function(){
           row.insertBefore( prev_row );
@@ -59,7 +59,7 @@ $(function(){
       type: "post",
       dataType: "json",
     }).done(function(res){
-      var next_row = row.next("div");
+      var next_row = row.next("tr");
       if( next_row.length ){
         d.animate({opacity:0.0},100,function(){
           row.insertAfter( next_row );
